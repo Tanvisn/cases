@@ -1,0 +1,507 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swiped Out: Case Interview Dashboard</title>
+    <style>
+        :root {
+            /* McKinsey-style Green Palette */
+            --interviewer-color: #e8f5e9;
+            --candidate-color: #ffffff;
+            --accent-green: #2e7d32;
+            --border-color: #c8e6c9;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px;
+        }
+
+        .dialogue-box {
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border-color);
+            position: relative;
+            animation: fadeIn 0.5s ease-out forwards;
+            line-height: 1.5;
+        }
+
+        /* Differentiating Speakers */
+        .candidate {
+            background-color: var(--candidate-color);
+            align-self: flex-start;
+            width: 85%;
+            border-left: 5px solid #ccc;
+        }
+
+        .interviewer {
+            background-color: var(--interviewer-color);
+            align-self: flex-end;
+            width: 85%;
+            border-right: 5px solid var(--accent-green);
+            text-align: right;
+            font-weight: 500;
+        }
+
+        .speaker-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            color: #666;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        #flowchart-container {
+            width: 100%;
+            max-width: 800px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            /* ADD THIS LINE: This creates a 'buffer' zone so the last box 
+       doesn't hit the button */
+            padding-bottom: 80px;
+            margin-bottom: 40px;
+        }
+
+        #controls {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            /* Centers the button perfectly */
+            background: rgba(255, 255, 255, 0.9);
+            /* Slight transparency looks pro */
+            backdrop-filter: blur(5px);
+            /* Blurs content behind the button */
+            padding: 15px 30px;
+            border-radius: 50px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            /* Ensures it stays in front of everything */
+        }
+
+        button {
+            padding: 12px 25px;
+            font-size: 1rem;
+            background-color: var(--accent-green);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background-color: #1b5e20;
+        }
+
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2 style="color: var(--accent-green);">CASE: SWIPED OUT</h2>
+    <p>Profitability Decline | McKinsey & Company Style</p>
+
+    <div id="flowchart-container">
+    </div>
+
+    <div id="controls">
+        <button id="nextBtn" onclick="showNext()">Next Step →</button>
+    </div>
+
+    <script>
+        const transcript = [
+            { speaker: "Candidate", text: "Firstly, to understand the client better, I would like to ask a few questions." },
+            { speaker: "Interviewer", text: "Sure, go ahead." },
+            { speaker: "Candidate", text: "Is the client a card network like Mastercard, or a card issuer like ICICI Bank?" },
+            { speaker: "Interviewer", text: "The client is a card issuer." },
+            { speaker: "Candidate", text: "Since I don't use credit cards, could you please tell me what the value chain of credit cards would look like?" },
+            { speaker: "Interviewer", text: "Sure. It usually starts with card issuance and customer acquisition... Finally, there's billing and collections where statements are generated and payments collected." },
+            { speaker: "Candidate", text: "So if I understand correctly, the key parts are issuance, processing, facilitation, and collections. Would I also consider support and risk management?" },
+            { speaker: "Interviewer", text: "Absolutely. Those are critical support functions." },
+            { speaker: "Candidate", text: "Okay. What are the different products that the client is serving?" },
+            { speaker: "Interviewer", text: "They are exclusively focused on credit cards and are not providing any other services as of now." }
+        ];
+
+        let currentIndex = 0;
+        const container = document.getElementById('flowchart-container');
+        const nextBtn = document.getElementById('nextBtn');
+
+        function showNext() {
+            if (currentIndex < transcript.length) {
+                const data = transcript[currentIndex];
+
+                const box = document.createElement('div');
+                box.className = `dialogue-box ${data.speaker.toLowerCase()}`;
+
+                box.innerHTML = `
+                    <div class="speaker-label">${data.speaker}</div>
+                    <div class="text-content">${data.text}</div>
+                `;
+
+                container.appendChild(box);
+
+                // Auto-scroll to the bottom
+                window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+
+                currentIndex++;
+
+                if (currentIndex === transcript.length) {
+                    nextBtn.innerText = "Case Completed";
+                    nextBtn.disabled = true;
+                }
+            }
+        }
+    </script>
+</body>
+
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swiped Out: Interactive Case</title>
+    <style>
+        :root {
+            --interviewer-color: #e8f5e9;
+            --candidate-color: #ffffff;
+            --accent-green: #2e7d32;
+            --border-color: #c8e6c9;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f8faf9;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        #flowchart-container {
+            width: 100%;
+            max-width: 850px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            padding-bottom: 150px;
+        }
+
+        .dialogue-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        .avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-size: cover;
+            flex-shrink: 0;
+            border: 2px solid #ddd;
+        }
+
+        .dialogue-box {
+            padding: 18px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border-color);
+            line-height: 1.6;
+            flex-grow: 1;
+        }
+
+        .candidate-wrapper {
+            flex-direction: row;
+        }
+
+        .candidate-box {
+            background-color: var(--candidate-color);
+            border-left: 5px solid #3498db;
+        }
+
+        .candidate-avatar {
+            background-image: url('woman.png');
+        }
+
+        .interviewer-wrapper {
+            flex-direction: row-reverse;
+        }
+
+        .interviewer-box {
+            background-color: var(--interviewer-color);
+            border-right: 5px solid var(--accent-green);
+            text-align: right;
+        }
+
+        .interviewer-avatar {
+            background-image: url('man.png');
+        }
+
+        /* Speech Bubble Tail for Candidate */
+        .candidate-box::before {
+            content: "";
+            position: absolute;
+            left: -10px;
+            top: 20px;
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            border-right: 10px solid #ffffff;
+            /* Matches candidate box color */
+        }
+
+        /* Speech Bubble Tail for Interviewer */
+        .interviewer-box::before {
+            content: "";
+            position: absolute;
+            right: -10px;
+            top: 20px;
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            border-left: 10px solid var(--interviewer-color);
+            /* Matches interviewer box color */
+        }
+
+        /* Ensure the lists don't have too much margin */
+        ul {
+            margin: 5px 0;
+            padding-left: 20px;
+            text-align: left;
+            /* Keeps lists readable even if interviewer box is right-aligned */
+        }
+
+        .speaker-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #777;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        #controls {
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(8px);
+            padding: 15px 40px;
+            border-radius: 50px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+            border: 1px solid #eee;
+        }
+
+        button {
+            padding: 12px 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            background-color: var(--accent-green);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.2s;
+            min-width: 160px;
+        }
+
+        button:hover {
+            background-color: #1b5e20;
+            transform: scale(1.05);
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+
+        /* Style for the Restart button */
+        button.restart-mode {
+            background-color: #dc3545;
+        }
+
+        button.restart-mode:hover {
+            background-color: #a71d2a;
+        }
+
+        /* Tablet and Mobile Optimizations */
+        @media (max-width: 600px) {
+            body {
+                padding: 20px 10px;
+                /* Less margin on sides */
+            }
+
+            .avatar {
+                width: 40px;
+                /* Smaller avatars for small screens */
+                height: 40px;
+            }
+
+            .dialogue-box {
+                padding: 12px;
+                font-size: 0.9rem;
+                /* Slightly smaller text for better fit */
+            }
+
+            #controls {
+                width: 80%;
+                /* Button container takes more width */
+                padding: 10px;
+                bottom: 20px;
+            }
+
+            button {
+                width: 100%;
+                /* Full-width button is easier to thumb-tap */
+                font-size: 0.9rem;
+            }
+
+            #flowchart-container {
+                gap: 15px;
+                /* Tighter spacing */
+                padding-bottom: 120px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2 style="color: var(--accent-green); margin-bottom: 5px;">SWIPED OUT</h2>
+    <p id="sub-header" style="margin-top: 0; color: #666;">Press Start to begin the case interview transcript</p>
+
+    <div id="flowchart-container"></div>
+
+    <div id="controls">
+        <button id="actionBtn" onclick="handleButtonClick()">Let's Start</button>
+    </div>
+
+    <script>
+        const transcript = [
+            { speaker: "Candidate", text: "Firstly, to understand the client better, I would like to ask a few questions." },
+            { speaker: "Interviewer", text: "Sure, go ahead." },
+            { speaker: "Candidate", text: "Is the client a card network like Mastercard, or a card issuer like ICICI Bank?" },
+            { speaker: "Interviewer", text: "The client is a card issuer." },
+            { speaker: "Candidate", text: "Since I don't use credit cards, could you please tell me what the value chain of credit cards would look like?" },
+            { speaker: "Interviewer", text: "Sure. It usually starts with card issuance and customer acquisition. Then we move to transaction processing and network facilitation. Finally, there's billing and collections." },
+            { speaker: "Candidate", text: "Understood. Would I also consider customer support and credit risk management within this value chain?" },
+            { speaker: "Interviewer", text: "Absolutely. Those are critical support functions." },
+            { speaker: "Candidate", text: "Okay. What are the different products that the client is serving?" },
+            { speaker: "Interviewer", text: "They are exclusively focused on credit cards and are not providing any other services as of now." },
+            { speaker: "Candidate", text: "Okay. To start with my approach, profits would be broken down into revenue and costs." },
+            { speaker: "Interviewer", text: "Sounds good. Identify the different revenue streams." },
+            { speaker: "Candidate", text: "So the revenue streams will be: <ul><li>Issuance fee</li><li>Maintenance/Removal fees</li><li>Interest paid on borrowed money</li><li>Defaults</li><li>Merchant collaborations.</li></ul>" },
+            { speaker: "Interviewer", text: "Looks good. Let’s move to the costs." },
+            { speaker: "Candidate", text: "Sure. Costs can be broken down into the costs of setting up and also running the business. Setup costs would include regulatory and financial costs." },
+            { speaker: "Interviewer", text: "Okay. The costs involved in setting up are not the issue. We can move to the running costs." },
+            { speaker: "Candidate", text: "Okay. Running costs include: <ul><li>Physical costs of the entire infrastructure</li><li>Financial costs like the issuance fee</li><li>Credit card costs like network collaboration</li><li>Marketing costs.</li></ul>" },
+            { speaker: "Interviewer", text: "Let’s not delve deeper into other costs. What do you think is the major mode of marketing that the client uses?" },
+            { speaker: "Candidate", text: "I think the client uses call centres for marketing." },
+            { speaker: "Interviewer", text: "Yes, the call centre efficiency is reduced and that is the problem. We can end the case here." }
+        ];
+
+        let currentIndex = 0;
+        const container = document.getElementById('flowchart-container');
+        const actionBtn = document.getElementById('actionBtn');
+
+        function handleButtonClick() {
+            // Check if we are in "Restart" mode
+            if (currentIndex >= transcript.length) {
+                resetCase();
+                return;
+            }
+
+            // Otherwise, show next box
+            const data = transcript[currentIndex];
+            const type = data.speaker.toLowerCase();
+
+            const wrapper = document.createElement('div');
+            wrapper.className = `dialogue-wrapper ${type}-wrapper`;
+
+            const avatar = document.createElement('div');
+            avatar.className = `avatar ${type}-avatar`;
+
+            const box = document.createElement('div');
+            box.className = `dialogue-box ${type}-box`;
+            box.innerHTML = `
+                <div class="speaker-label">${data.speaker}</div>
+                <div>${data.text}</div>
+            `;
+
+            wrapper.appendChild(avatar);
+            wrapper.appendChild(box);
+            container.appendChild(wrapper);
+
+            wrapper.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+            currentIndex++;
+
+            // Update button text logic
+            if (currentIndex === 1) {
+                actionBtn.innerText = "Next Dialogue →";
+                document.getElementById('sub-header').innerText = "Case Interview Simulation";
+            }
+
+            if (currentIndex === transcript.length) {
+                actionBtn.innerText = "Restart Case";
+                actionBtn.classList.add('restart-mode');
+            }
+        }
+
+        function resetCase() {
+            // Clear all boxes
+            container.innerHTML = "";
+            // Reset counter
+            currentIndex = 0;
+            // Reset button
+            actionBtn.innerText = "Let's Start";
+            actionBtn.classList.remove('restart-mode');
+            // Reset sub-header
+            document.getElementById('sub-header').innerText = "Press Start to begin the case interview transcript";
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+
+</html>
